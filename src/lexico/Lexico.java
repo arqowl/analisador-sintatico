@@ -87,7 +87,7 @@ public class Lexico {
 					termo += c;
 				}
 				else {
-					throw new LexicalException("Símbolo inválido");
+					throw new LexicalException("Simbolo invalido");
 				}
 				break;
 			case 1:
@@ -101,7 +101,7 @@ public class Lexico {
 					back();
 				}
 				else {
-					throw new LexicalException("Identificador mal formado");
+					throw new LexicalException("Identificador mal formatado");
 				}
 				break;
 			case 2:
@@ -132,7 +132,7 @@ public class Lexico {
 					termo += c;
 				}
 				else {
-					throw new LexicalException("Número inválido");
+					throw new LexicalException("Numero invalido");
 				}
 				break;
 			case 4:
@@ -147,7 +147,7 @@ public class Lexico {
 					termo += c;
 				}
 				else {
-					throw new LexicalException("Número inválido");
+					throw new LexicalException("Numero invalido");
 				}
 				break;
 			case 6:
@@ -162,7 +162,7 @@ public class Lexico {
 						back();
 						return token;
 				} else {
-					throw new LexicalException("Número inválido");
+					throw new LexicalException("Numero invalido");
 				}
 				break;
 			case 7:
@@ -176,7 +176,7 @@ public class Lexico {
 					back();
 				}
 				else {
-					throw new LexicalException("Operador Relacional inválido");
+					throw new LexicalException("Operador Relacional invalido");
 				}
 				break;
 			case 8:
@@ -191,7 +191,7 @@ public class Lexico {
 					termo += c;
 				}
 				else {
-					throw new LexicalException("Operador Relacional mal formado");
+					throw new LexicalException("Operador Relacional mal formatado");
 				}
 				break;
 			case 10:
@@ -211,7 +211,7 @@ public class Lexico {
 					back();
 				}
 				else {
-					throw new LexicalException("Operador Relacional inválido");
+					throw new LexicalException("Operador Relacional invalido");
 				}
 				break;
 			case 12:
@@ -226,7 +226,7 @@ public class Lexico {
 					termo += c;
 				}
 				else {
-					throw new LexicalException("Char mal formado");
+					throw new LexicalException("Char mal formatado");
 				}
 				break;
 			case 14:
@@ -235,7 +235,7 @@ public class Lexico {
 					termo += c;
 				}
 				else {
-					throw new LexicalException("Char mal formado");
+					throw new LexicalException("Char mal formatado");
 				}
 				break;
 			case 15: 
@@ -262,7 +262,7 @@ public class Lexico {
 					termo += c;
 				}
 				else {
-					throw new LexicalException("Operador lógico inválido");
+					throw new LexicalException("Operador logico invalido");
 				}
 				break;
 			case 19:
@@ -277,7 +277,7 @@ public class Lexico {
 					termo += c;
 				}
 				else {
-					throw new LexicalException("Operador lógico inválido");
+					throw new LexicalException("Operador logico invalido");
 				}
 				break;
 			case 21:

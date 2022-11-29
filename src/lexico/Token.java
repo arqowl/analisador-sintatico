@@ -79,7 +79,7 @@ public class Token {
 		case 3:
 			return this.text + " - Operador Relacional";
 		case 4:
-			return this.text + " - Operador Aritmético";
+			return this.text + " - Operador Aritmetico";
 		case 5:
 			return this.text + " - Char";
 		case 6:
@@ -89,7 +89,7 @@ public class Token {
 		case 8:
 			return this.text + " - Operador Booleano";
 		case 9:
-			return this.text + " - Fim do Código";
+			return this.text + " - Fim do Codigo";
 		}
 		return "";
 	}

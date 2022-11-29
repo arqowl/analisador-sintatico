@@ -4,13 +4,13 @@ import exceptions.LexicalException;
 import exceptions.semanticoException;
 import exceptions.sintaxException;
 import lexico.Lexico;
-import parser.isiParser;
+import parser.Parser;
 
 public class MainClass {
 	public static void main(String[] args) {
 		try {
 			Lexico sc = new Lexico("input");
-			isiParser pa = new isiParser(sc);
+			Parser pa = new Parser(sc);
 			 
 			
 			pa.S();
@@ -26,13 +26,13 @@ public class MainClass {
 			
 		} 
 		catch (LexicalException ex) {
-			System.out.println("ERRO LÉXICO "+ex.getMessage());
+			System.out.println("ERRO LEXICO "+ex.getMessage());
 		}
 		catch (sintaxException ex) {
 			System.out.println("ERRO SINTATICO!" + ex.getMessage());
 		}
 		catch (semanticoException ex) {
-			System.out.println("ERRO SEMÂNTICO!" + ex.getMessage());
+			System.out.println("ERRO SEMANTICO!" + ex.getMessage());
 		}
 		
 		

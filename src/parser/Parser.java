@@ -6,21 +6,21 @@ import exceptions.sintaxException;
 import lexico.Lexico;
 import lexico.Token;
 
-public class isiParser {
+public class Parser {
 	private Lexico scanner;
 	private Token token;
 	public String x;
 	int k;
 	ArrayList<String> listaId = new ArrayList<>();
 	
-	public isiParser(Lexico scanner) {
+	public Parser(Lexico scanner) {
 		this.scanner = scanner;
 	}
 	
 	public void S() {
 		token = scanner.nextToken();
 		if(!token.getText().equals("int")) {
-			throw new sintaxException("Coloque o int no início");
+			throw new sintaxException("Coloque o int no inicio");
 		}
 		token = scanner.nextToken();
 		
@@ -30,12 +30,12 @@ public class isiParser {
 		token = scanner.nextToken();
 		
 		if(!token.getText().equals("(")) {
-			throw new sintaxException("Abra o parêntese do main");
+			throw new sintaxException("Abra o parentese do main");
 		}
 		token = scanner.nextToken();
 		
 		if(!token.getText().equals(")")) {
-			throw new sintaxException("Feche o parêntese do main!");
+			throw new sintaxException("Feche o parentese do main!");
 		}
 		token = scanner.nextToken();
 		
@@ -46,7 +46,7 @@ public class isiParser {
 			
 		}
 		else {
-			System.out.println(" Ops algum erro foi encontrado no final do código");
+			System.out.println(" Ops, algum erro foi encontrado no final do codigo");
 		}
 	}
 	
@@ -80,14 +80,14 @@ public class isiParser {
 		}else if(token.getText().equals("if")) {
 			token = scanner.nextToken();
 			if(!token.getText().equals("(")) {
-				throw new sintaxException(" Abra o parêntese '(', Perto do ->" +Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
+				throw new sintaxException(" Abra o parentese '(', Perto do ->" +Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
 			}
 			
 			token = scanner.nextToken();
 			ExpRel();
 			
 			if(!token.getText().equals(")")) {
-				throw new sintaxException(" Feche o parêntese ')' perto do " +Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
+				throw new sintaxException(" Feche o parentese ')' perto do " +Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
 			}
 			token = scanner.nextToken();
 			C();
@@ -115,19 +115,19 @@ public class isiParser {
 	
 	public void It() {
 		if(!token.getText().equals("while")) {
-			throw new sintaxException(" Necessário um while no começo!  Foi encontrado ->" +Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
+			throw new sintaxException(" Necessario um while no comeco!  Foi encontrado ->" +Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
 		}
 		token = scanner.nextToken();
 		
 		if(!token.getText().equals("(")) {
-			throw new sintaxException(" Abra o parêntese do while '(', Próximo de ->" +Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
+			throw new sintaxException(" Abra o parentese do while '(', Proximo de ->" +Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
 		}
 		token = scanner.nextToken();
 		
 		ExpRel();
 		
 		if(!token.getText().equals(")")) {
-			throw new sintaxException(" Feche o parêntese do while ')', Próximo de ->" +Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
+			throw new sintaxException(" Feche o parentese do while ')', Proximo de ->" +Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
 		}
 		token = scanner.nextToken();
 		
@@ -137,21 +137,22 @@ public class isiParser {
 	
 	public void At () {
 		if(token.getType() != Token.TK_IDENTIFIER) {
-			throw new sintaxException(" Necessário uma variável para armazenar o valor, Foi encontrado ->" +Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
+			throw new sintaxException(" Necessario uma variavel para armazenar o valor, Foi encontrado ->" +Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
 		}
 		procuraId(token.getText());
 		
 		token = scanner.nextToken();
 		
 		if(!token.getText().equals("=")) {
-			throw new sintaxException(" Necessário um = para atribuir o resultado da expressão na variável! Foi encontrado -> " +Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
+			throw new sintaxException(" Necessario um = para atribuir o resultado da expressao na variavel! Foi encontrado -> " +
+			Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
 		}
 		token = scanner.nextToken();
 		
 		ExpArit();
 		
 		if(!token.getText().equals(";")) {
-			throw new sintaxException(" Necessário o ; para finalizar a atribuição, próximo de -> " +Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
+			throw new sintaxException(" Necessario o ; para finalizar a atribuicao, Proximo de -> " +Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
 		}
 		
 		token = scanner.nextToken();
@@ -161,7 +162,7 @@ public class isiParser {
 		ExpArit();
 		
 		if(token.getType() != Token.TK_OPERADOR_RELACIONAL && token.getType() != Token.TK_OPERADOR_BOOLEANO) {
-			throw new sintaxException(" É necessário um operador relacional! Foi encontrado -> " +Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
+			throw new sintaxException(" Necessario um operador relacional! Foi encontrado -> " +Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
 		}
 		token = scanner.nextToken();
 		
@@ -180,7 +181,7 @@ public class isiParser {
 			}else if(token.getText().equals("-")) {
 				token = scanner.nextToken();
 			}else {
-				throw new sintaxException(" É necessário um operador aritmético + ou - Foi encontrado ->" +Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
+				throw new sintaxException(" Necessario um operador aritmetico + ou - Foi encontrado ->" +Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
 			}
 			Termo();
 			Elinha();
@@ -194,27 +195,26 @@ public class isiParser {
 			if(token.getText().equals("int") ||token.getText().equals("float") || token.getText().equals("char")) {
 				token = scanner.nextToken();
 			}else {
-				throw new sintaxException(" É necessário dizer o tipo da id (int, float, char) Foi encontrado ->" +Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
+				throw new sintaxException(" Necessario dizer o tipo da id (int, float, char) Foi encontrado ->" +Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
 			}
 			
 			if(token.getType() == Token.TK_IDENTIFIER) {
 				salvarVariavel(token.getText());
 				token = scanner.nextToken();
 			}else {
-				throw new sintaxException(" Necessário uma variável! Foi encontrado ->" +Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
+				throw new sintaxException(" Necessario uma variavel! Foi encontrado ->" +Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
 			}
 			
 			if(token.getText().equals(";")) {
 				token = scanner.nextToken();
 			}else {
-				throw new sintaxException(" Necessário ; para finalizar a declaração, próximo de ->" +Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
+				throw new sintaxException(" Necessario ; para finalizar a declaracao, Proximo de ->" +Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
 			}
 			DecVar();
 		}else {
 			
 		}
 	}
-	
 	
 	public void Termo() {
 		Fator();
@@ -228,7 +228,7 @@ public class isiParser {
 			}else if(token.getText().equals("/")) {
 				token = scanner.nextToken();
 			}else {
-				throw new sintaxException(" É necessário um operador aritmético * ou / e foi encontrado ->" +Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
+				throw new sintaxException(" Necessario um operador aritmetico * ou / e foi encontrado ->" +Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
 			}
 			Fator();
 			Termol();
@@ -240,7 +240,7 @@ public class isiParser {
 			token = scanner.nextToken();
 			ExpArit();
 			if(!token.getText().equals(")")) {
-				throw new sintaxException(" é necessário fechar o parentese perto de ->" +Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
+				throw new sintaxException(" Necessario fechar o parentese perto de ->" +Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
 			}
 			token = scanner.nextToken();
 		}
@@ -248,7 +248,7 @@ public class isiParser {
 		else if ((token.getType() == 1 || token.getType() == 0 || token.getType() == 2 || token.getType() == 5)) {
 			token = scanner.nextToken();
 		}else {
-			throw new sintaxException(" ID, float, int, char ou '(' são esperados, Foi encontrado -> "+Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
+			throw new sintaxException(" ID, float, int, char ou '(' sao esperados, Foi encontrado -> "+Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
 		}
 	}
 	
@@ -269,7 +269,7 @@ public class isiParser {
 	
 	public void procuraId(String id) {
 		if(listaId.isEmpty()) {
-			throw new semanticoException(" É Necessário declarar variável! " +Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
+			throw new semanticoException(" Necessario declarar variavel! " +Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
 		}else {
 			for (int a = 0; a < listaId.size(); a++) {
 				if(id.equals(listaId.get(a))){
@@ -277,7 +277,7 @@ public class isiParser {
 				}
 			}
 			if(k != 1) {
-				throw new semanticoException(" É Necessário declarar variável! " +Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
+				throw new semanticoException(" Necessario declarar variavel! " +Token.TK_TEXT[token.getType()]+" ("+token.getText()+")");
 			}	
 		}
 	}
